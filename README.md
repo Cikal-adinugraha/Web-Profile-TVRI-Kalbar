@@ -17,10 +17,8 @@ Dokumen ini dibuat untuk memandu rekan tim dalam menggunakan GitHub, khususnya m
 Clone repository hanya perlu dilakukan sekali:
 
 ```bash
-git clone https://github.com/username/repository.git
+git clone https://github.com/Cikal-adinugraha/Web-Profile-TVRI-Kalbar.git
 ```
-
-> Ganti `username/repository.git` dengan link repository yang digunakan.
 
 ### 3. Update Repository Lokal (Git Pull)
 Sebelum mengerjakan atau membuat perubahan, pastikan repository lokal sudah update:
