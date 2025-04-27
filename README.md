@@ -78,27 +78,3 @@ git push origin nama-branch
 
 ---
 
-## 📝 Standar Penulisan Pesan Commit
-
-Gunakan format standar berikut untuk memudahkan kolaborasi:
-
-| Kategori | Penjelasan | Contoh |
-|:--------:|:----------:|:------:|
-| Add      | Menambahkan fitur baru | `Add fitur login pengguna` |
-| Fix      | Memperbaiki bug/error | `Fix error pada halaman dashboard` |
-| Update   | Memperbaharui fitur yang sudah ada | `Update desain halaman profil` |
-| Remove   | Menghapus file atau fitur yang tidak digunakan | `Remove file gambar tidak terpakai` |
-
----
-
-## ⚡ Tips Tambahan
-- **Selalu lakukan `git pull` sebelum melakukan `git push`.**
-- **Lakukan commit secara rutin, tidak menumpuk banyak perubahan dalam satu commit.**
-- **Gunakan pesan commit yang singkat, padat, dan jelas.**
-
----
-
-# 📎 Penutup
-Dengan mengikuti SOP ini, diharapkan semua anggota tim dapat bekerja dengan lebih rapi, efektif, dan menghindari konflik saat berkolaborasi menggunakan GitHub.
-
----
