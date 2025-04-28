@@ -1,12 +1,8 @@
 
 # 📁 SOP dan Tutorial Push & Commit GitHub
-
-## 📌 Tujuan
-Dokumen ini dibuat untuk memandu rekan tim dalam menggunakan GitHub, khususnya melakukan **push** dan **commit** perubahan ke repository.
-
 ---
 
-## 🚀 Langkah-langkah Kerja
+## 🚀 Tutorial Push & Commit GitHub
 
 ### 1. Persiapan
 - Pastikan Git sudah terinstall di komputer.
