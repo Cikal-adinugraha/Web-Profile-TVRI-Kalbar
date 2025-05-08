@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([BeritaSeeder::class]);
+
         User::factory()->create([
             'name' => 'admin',
             'username' => 'admin',
