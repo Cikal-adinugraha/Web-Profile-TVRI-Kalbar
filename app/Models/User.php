@@ -33,6 +33,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function berita()
+    {
+        return $this->hasMany(Berita::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
