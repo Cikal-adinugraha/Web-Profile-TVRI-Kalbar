@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Laravel</title>
+  <title>{{ env('APP_NAME') }}</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,7 +15,7 @@
 </head>
 
 <body class="antialiased">
-  <h1>ini bapak budi</h1>
+  @yield('content')
 </body>
 
 </html>
