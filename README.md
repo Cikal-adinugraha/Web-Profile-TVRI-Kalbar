@@ -73,6 +73,22 @@ DB_CONNECTION=sqlite
 
 ilangin tanda pager ny (#) trus sesuaikan aj
 
+#### 6. Start Server
+
+butuh 2 terminal buat jalanin server laravel ama vite, tapi klo pake laragon atau herd sih cuma butuh 1 doang buat jalanin server vite
+
+1. Start Laravel Server pake perintah
+
+```bash
+php artisan serve
+```
+
+2. Start Vite Server pake perintah
+
+```bash
+npm run dev
+```
+
 ---
 
 ## 🚀 Tutorial Push & Commit GitHub
