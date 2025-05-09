@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Models\Berita;
+use App\Http\Controllers\BeritaController;
 
-Route::get('/', function () {
-    return view("index");
-});
+Route::get('/', fn() => view("index", ["news" => Berita::published()->latest()->get()]));
+Route::get("/berita/{berita}", [BeritaController::class, "show"])->name("berita.show");
 
 Route::middleware("guest")->group(function () {
     Route::get("/login", [AuthController::class, "index"])->name("login.get");
@@ -13,7 +14,11 @@ Route::middleware("guest")->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
-    Route::get("/dashboard", fn() => view("admin.dashboard"))->name("dashboard");
+    Route::get("/dashboard", [BeritaController::class, "index"])->name("dashboard");
+
+    // * Tambah Berita
+    Route::get("/berita/tambah", [BeritaController::class, "create"])->name("berita.tambah");
+    Route::post("/berita/tambah", [BeritaController::class, "store"])->name("berita.store");
 
     Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 });
