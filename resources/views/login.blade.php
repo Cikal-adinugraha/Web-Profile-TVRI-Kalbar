@@ -3,7 +3,6 @@
 @section('content')
   <div class="container">
     <h1>login atmin</h1>
-    <p>ini form loginnya</p>
     <div>
       <form method="POST" action="{{ route('login.post') }}">
         @csrf
