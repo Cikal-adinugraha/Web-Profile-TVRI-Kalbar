@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\ImageFile;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -65,6 +66,39 @@ class BeritaController extends Controller
     public function unpublish(Berita $berita)
     {
         $berita->update(["is_published" => false]);
+
+        return redirect()->route("dashboard");
+    }
+
+    public function edit(Berita $berita)
+    {
+        return view("admin.berita.edit", [
+            "berita" => $berita,
+        ]);
+    }
+
+    public function update(Request $request, Berita $berita)
+    {
+        $data = collect($request->validate([
+            "judul" => "required|string",
+            "isi" => "required|string",
+            "gambar" => ImageFile::image()->max("3mb")->extensions(["jpg", "jpeg", "png"])->rules(["nullable"]),
+        ]));
+
+        if ($request->hasFile("gambar")) {
+            // * hapus gambar lama kalau ada
+            if ($berita->gambar) {
+                Storage::delete($berita->gambar);
+            }
+
+            // * simpan gambar baru
+            $data->put("gambar", $request->file("gambar")->store("images/berita"));
+        }
+
+        $berita->update([
+            ...$data->toArray(),
+            "user_id" => Auth::user()->id,
+        ]);
 
         return redirect()->route("dashboard");
     }
