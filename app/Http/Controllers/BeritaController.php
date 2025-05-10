@@ -47,4 +47,25 @@ class BeritaController extends Controller
             "berita" => $berita,
         ]);
     }
+
+    public function preview(Berita $berita)
+    {
+        return view("admin.berita.preview", [
+            "berita" => $berita,
+        ]);
+    }
+
+    public function publish(Berita $berita)
+    {
+        $berita->update(["is_published" => true]);
+
+        return redirect()->route("dashboard");
+    }
+
+    public function unpublish(Berita $berita)
+    {
+        $berita->update(["is_published" => false]);
+
+        return redirect()->route("dashboard");
+    }
 }
