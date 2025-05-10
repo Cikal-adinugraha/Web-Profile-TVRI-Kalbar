@@ -43,7 +43,7 @@
                   @endif
                 </div>
                 <div>
-                  edit
+                  <a href="{{ route('berita.edit', ['berita' => $berita]) }}">edit</a>
                 </div>
                 <div>
                   <form action="{{ route('berita.destroy', ['berita' => $berita]) }}" method="POST">
