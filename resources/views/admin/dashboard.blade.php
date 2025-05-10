@@ -46,7 +46,11 @@
                   edit
                 </div>
                 <div>
-                  hapus
+                  <form action="{{ route('berita.destroy', ['berita' => $berita]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('yakin mau hapus?')">hapus</button>
+                  </form>
                 </div>
               </th>
             </tr>

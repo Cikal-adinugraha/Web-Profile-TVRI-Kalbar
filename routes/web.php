@@ -27,5 +27,8 @@ Route::middleware("auth")->group(function () {
     Route::put("/berita/publish/{berita}", [BeritaController::class, "publish"])->name("berita.publish");
     Route::put("/berita/unpublish/{berita}", [BeritaController::class, "unpublish"])->name("berita.unpublish");
 
+    // * Hapus Berita
+    Route::delete("/berita/{berita}", [BeritaController::class, "destroy"])->name("berita.destroy");
+
     Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 });

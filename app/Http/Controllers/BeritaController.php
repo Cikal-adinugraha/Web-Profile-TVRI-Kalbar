@@ -68,4 +68,11 @@ class BeritaController extends Controller
 
         return redirect()->route("dashboard");
     }
+
+    public function destroy(Berita $berita)
+    {
+        $berita->delete();
+
+        return redirect()->route("dashboard");
+    }
 }
