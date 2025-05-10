@@ -32,7 +32,15 @@
               <th class="px-6">{{ $berita->is_published ? 'Sudah Dipublish' : 'Belum Dipublish' }}</th>
               <th class="px-6">
                 <div>
-                  preview
+                  @if ($berita->is_published)
+                    <form action="{{ route('berita.unpublish', ['berita' => $berita]) }}" method="POST">
+                      @csrf
+                      @method('PUT')
+                      <button type="submit">batalkan publish</button>
+                    </form>
+                  @else
+                    <a href="{{ route('berita.preview', ['berita' => $berita]) }}">preview</a>
+                  @endif
                 </div>
                 <div>
                   edit
