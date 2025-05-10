@@ -20,5 +20,12 @@ Route::middleware("auth")->group(function () {
     Route::get("/berita/tambah", [BeritaController::class, "create"])->name("berita.tambah");
     Route::post("/berita/tambah", [BeritaController::class, "store"])->name("berita.store");
 
+    // * Preview Berita
+    Route::get("/berita/preview/{berita}", [BeritaController::class, "preview"])->name("berita.preview");
+
+    // * Publish & Unpublish Berita
+    Route::put("/berita/publish/{berita}", [BeritaController::class, "publish"])->name("berita.publish");
+    Route::put("/berita/unpublish/{berita}", [BeritaController::class, "unpublish"])->name("berita.unpublish");
+
     Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 });
