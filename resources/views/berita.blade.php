@@ -1,16 +1,52 @@
-@extends('root')
+@extends('layouts.app')
+
+@section('title', 'Berita')
 
 @section('content')
-  <div class="container p-4">
-    <a href="/">kembali ke halaman utama</a>
-    <div class="mt-4">
-      <h1 class="text-xl font-bold">{{ $berita->judul }}</h1>
+<section class="py-5">
+    <div class="container">
+        <h2 class="fw-bold text-center mb-4">Berita Terbaru</h2>
 
-      <h6>oleh {{ $berita->user->name }} pada tanggal {{ $berita->created_at->translatedFormat('d F Y') }}</h6>
-      <div class="py-6">
-        <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" alt="{{ $berita->judul }}" class="h-40 w-72">
-      </div>
-      <p>{!! $berita->isi !!}</p>
+        {{-- Pencarian dan Filter Kategori --}}
+        <form method="GET" action="{{ url('/berita') }}" class="row mb-4">
+            <div class="col-md-8">
+                <input type="text" name="cari" class="form-control" placeholder="Cari berita..." value="{{ request('cari') }}">
+            </div>
+            <div class="col-md-4">
+                <select name="kategori" class="form-select" onchange="this.form.submit()">
+                    <option value="">Semua Kategori</option>
+                    @foreach($kategori_list as $kategori)
+                        <option value="{{ $kategori->slug }}" {{ request('kategori') == $kategori->slug ? 'selected' : '' }}>
+                            {{ $kategori->nama }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </form>
+
+        {{-- Daftar Berita --}}
+        <div class="row">
+            @forelse($berita as $item)
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->judul }}">
+                        <div class="card-body">
+                            <small class="text-muted">{{ $item->created_at->translatedFormat('d F Y') }}</small>
+                            <h5 class="card-title mt-2">{{ $item->judul }}</h5>
+                            <p class="card-text">{{ Str::limit(strip_tags($item->isi), 100) }}</p>
+                            <a href="{{ url('/berita/' . $item->slug) }}" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p class="text-center">Belum ada berita ditemukan.</p>
+            @endforelse
+        </div>
+
+        {{-- Paginasi --}}
+        <div class="d-flex justify-content-center mt-4">
+            {{ $berita->links() }}
+        </div>
     </div>
-  </div>
+</section>
 @endsection

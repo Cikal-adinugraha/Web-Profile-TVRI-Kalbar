@@ -1,62 +1,51 @@
-@extends('root')
+@extends('layouts.app')
+
+@section('title', 'Dashboard Admin')
 
 @section('content')
-  <div class="container p-4">
-    <h1>ini halaman dashboard atmin</h1>
-    <form method="POST" action="{{ route('logout') }}">
-      @csrf
-      <button type="submit" class="border border-black px-4 py-2">Logout</button>
-    </form>
-    <div class="mt-4">
-      <a href="{{ route('berita.tambah') }}">Berita Baru</a>
-      <table>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Gambar</th>
-            <th>Judul</th>
-            <th>Tanggal</th>
-            <th>Status</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($news as $berita)
-            <tr>
-              <td class="px-6">{{ $loop->iteration }}</td>
-              <th class="px-6">
-                <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" alt="Gambar" class="h-40 w-56 object-cover">
-              </th>
-              <th class="px-6">{{ $berita->judul }}</th>
-              <th class="px-6">{{ $berita->created_at->addHours(7)->translatedFormat('d F Y h:i:s') }}</th>
-              <th class="px-6">{{ $berita->is_published ? 'Sudah Dipublish' : 'Belum Dipublish' }}</th>
-              <th class="px-6">
-                <div>
-                  @if ($berita->is_published)
-                    <form action="{{ route('berita.unpublish', ['berita' => $berita]) }}" method="POST">
-                      @csrf
-                      @method('PUT')
-                      <button type="submit">batalkan publish</button>
-                    </form>
-                  @else
-                    <a href="{{ route('berita.preview', ['berita' => $berita]) }}">preview</a>
-                  @endif
+<section class="py-4">
+    <div class="container">
+        <h3 class="fw-bold mb-4">Dashboard Admin</h3>
+        
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="card shadow-sm text-center border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Berita</h5>
+                        <h2>{{ $totalBerita ?? 0 }}</h2>
+                        <a href="{{ route('admin.berita.index') }}" class="btn btn-sm btn-outline-primary mt-2">Kelola</a>
+                    </div>
                 </div>
-                <div>
-                  <a href="{{ route('berita.edit', ['berita' => $berita]) }}">edit</a>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card shadow-sm text-center border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Program</h5>
+                        <h2>{{ $totalProgram ?? 0 }}</h2>
+                        <a href="{{ route('admin.program.index') }}" class="btn btn-sm btn-outline-primary mt-2">Kelola</a>
+                    </div>
                 </div>
-                <div>
-                  <form action="{{ route('berita.destroy', ['berita' => $berita]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('yakin mau hapus?')">hapus</button>
-                  </form>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card shadow-sm text-center border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Kategori</h5>
+                        <h2>{{ $totalKategori ?? 0 }}</h2>
+                        <a href="{{ route('admin.kategori.index') }}" class="btn btn-sm btn-outline-primary mt-2">Kelola</a>
+                    </div>
                 </div>
-              </th>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card shadow-sm text-center border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">User</h5>
+                        <h2>{{ $totalUser ?? 0 }}</h2>
+                        <a href="{{ route('admin.user.index') }}" class="btn btn-sm btn-outline-primary mt-2">Kelola</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
+</section>
 @endsection

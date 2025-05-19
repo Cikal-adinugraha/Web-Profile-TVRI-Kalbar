@@ -1,15 +1,29 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\Program;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\ImageFile;
 use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
+    public function programAcara(Request $request)
+    {
+        $query = Program::query();
+
+        if ($request->filled('hari')) {
+            $query->where('hari', $request->hari);
+        }
+
+        $programs = $query->orderBy('jam_mulai')->get();
+
+        return view('program-acara', compact('programs'));
+    }
+
     public function index()
     {
         return view("admin.dashboard", [
@@ -86,12 +100,10 @@ class BeritaController extends Controller
         ]));
 
         if ($request->hasFile("gambar")) {
-            // * hapus gambar lama kalau ada
             if ($berita->gambar) {
                 Storage::delete($berita->gambar);
             }
 
-            // * simpan gambar baru
             $data->put("gambar", $request->file("gambar")->store("images/berita"));
         }
 
@@ -109,4 +121,26 @@ class BeritaController extends Controller
 
         return redirect()->route("dashboard");
     }
+
+    public function publicIndex(Request $request)
+{
+    $query = Berita::query()->where('is_published', true);
+
+    // Pencarian
+    if ($request->filled('cari')) {
+        $query->where('judul', 'like', '%' . $request->cari . '%');
+    }
+
+    // Filter berdasarkan kategori
+    if ($request->filled('kategori')) {
+        $query->whereHas('kategori', function ($q) use ($request) {
+            $q->where('slug', $request->kategori);
+        });
+    }
+
+    $berita = $query->latest()->paginate(6);
+    $kategori_list = Kategori::all(); // pastikan model ini ada
+
+    return view('berita', compact('berita', 'kategori_list'));
+  }
 }

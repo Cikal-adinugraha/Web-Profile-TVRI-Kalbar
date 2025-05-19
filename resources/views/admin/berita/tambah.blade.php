@@ -7,6 +7,7 @@
       @csrf
       <button type="submit" class="border border-black px-4 py-2">Logout</button>
     </form>
+
     <div class="mt-4">
       <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -33,7 +34,6 @@
   <script>
     const fileInput = document.getElementById('gambar');
     const preview = document.getElementById('preview');
-
     fileInput.addEventListener('change', function() {
       const [file] = fileInput.files;
       if (file) {
