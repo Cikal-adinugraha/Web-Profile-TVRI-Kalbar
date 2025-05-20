@@ -19,8 +19,7 @@ class BeritaFactory extends Factory
         return [
             "user_id" => 1,
             "judul" => fake()->sentence(3),
-            "isi" => fake()->paragraph(5),
-            "gambar" => "images/perpus.jpg"
+            "isi" => collect(fake()->paragraphs(15))->map(fn($p) => "<p>$p</p>")->implode(''),
         ];
     }
 }
