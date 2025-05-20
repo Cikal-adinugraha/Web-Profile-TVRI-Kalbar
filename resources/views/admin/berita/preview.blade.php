@@ -24,7 +24,7 @@
         <form action="{{ route('berita.publish', ['berita' => $berita]) }}" method="POST">
           @csrf
           @method('PUT')
-          <button type="submit" class="btn btn-primary">Udah yakin? Publish</button>
+          <button type="submit" class="btn btn-primary">Publikasikan Sekarang!</button>
         </form>
       </div>
     </div>
