@@ -52,7 +52,7 @@
                   <button type="submit" class="btn btn-sm btn-warning w-100">Kembalikan ke draft</button>
                 </form>
               @else
-                <a href="{{ route('berita.preview', $berita) }}" class="btn btn-sm btn-info text-white w-100">Publish</a>
+                <a href="{{ route('berita.preview', $berita) }}" class="btn btn-sm btn-info text-white w-100">Preview</a>
               @endif
 
               <a href="{{ route('berita.edit', $berita) }}" class="btn btn-sm btn-secondary w-100">Edit</a>

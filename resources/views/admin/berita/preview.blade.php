@@ -8,7 +8,7 @@
 
       @if ($berita->gambar)
         <div class="mb-4">
-          <img src="{{ asset('storage/' . $berita->gambar) }}" class="img-fluid rounded" alt="Gambar Berita" style="max-width: 100%; height: auto;">
+          <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" class="img-fluid rounded" alt="Gambar Berita" style="max-width: 100%; height: auto;">
         </div>
       @endif
 
