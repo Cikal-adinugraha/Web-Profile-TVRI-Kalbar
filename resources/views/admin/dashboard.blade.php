@@ -39,7 +39,7 @@
           <td>{{ $berita->judul }}</td>
           <td>{{ $berita->created_at->addHours(7)->translatedFormat('d F Y H:i:s') }}</td>
           <td>
-            <span class="badge {{ $berita->is_published ? 'bg-success' : 'bg-warning text-dark' }}">
+            <span class="badge {{ $berita->is_published ? 'bg-success' : 'bg-warning text-dark' }} w-100">
               {{ $berita->is_published ? 'Dipublikasikan' : 'Draft' }}
             </span>
           </td>
@@ -49,18 +49,18 @@
                 <form action="{{ route('berita.unpublish', $berita) }}" method="POST">
                   @csrf
                   @method('PUT')
-                  <button type="submit" class="btn btn-sm btn-warning">Kembalikan ke draft</button>
+                  <button type="submit" class="btn btn-sm btn-warning w-100">Kembalikan ke draft</button>
                 </form>
               @else
-                <a href="{{ route('berita.preview', $berita) }}" class="btn btn-sm btn-info text-white">Publish</a>
+                <a href="{{ route('berita.preview', $berita) }}" class="btn btn-sm btn-info text-white w-100">Publish</a>
               @endif
 
-              <a href="{{ route('berita.edit', $berita) }}" class="btn btn-sm btn-secondary">Edit</a>
+              <a href="{{ route('berita.edit', $berita) }}" class="btn btn-sm btn-secondary w-100">Edit</a>
 
               <form action="{{ route('berita.destroy', $berita) }}" method="POST" onsubmit="return confirm('Yakin mau menghapus?')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-danger">Hapus Postingan Ini</button>
+                <button type="submit" class="btn btn-sm btn-danger w-100">Hapus Postingan Ini</button>
               </form>
             </div>
           </td>
