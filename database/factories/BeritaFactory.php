@@ -18,7 +18,7 @@ class BeritaFactory extends Factory
     {
         return [
             "user_id" => 1,
-            "judul" => fake()->sentence(3),
+            "judul" => fake()->sentence(10),
             "isi" => collect(fake()->paragraphs(15))->map(fn($p) => "<p>$p</p>")->implode(''),
         ];
     }
