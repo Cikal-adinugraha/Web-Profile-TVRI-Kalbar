@@ -1,12 +1,10 @@
 @extends('root')
 
+@section('title', 'Edit Halaman Berita')
 @section('content')
-  <div class="container p-4">
-    <h1>ini halaman edit berita</h1>
-    <form method="POST" action="{{ route('logout') }}">
-      @csrf
-      <button type="submit" class="border border-black px-4 py-2">Logout</button>
-    </form>
+<div class="container p-4">
+  <h1 class="text-primary">Edit Berita</h1>
+
     <div class="mt-4">
       <form action="{{ route('berita.update', ['berita' => $berita]) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -30,17 +28,16 @@
         <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Simpan</button>
       </form>
     </div>
-  </div>
-  <script>
-    const fileInput = document.getElementById('gambar');
-    const preview = document.getElementById('preview');
+<script>
+  const fileInput = document.getElementById('gambar');
+  const preview = document.getElementById('preview');
 
-    fileInput.addEventListener('change', function() {
-      const [file] = fileInput.files;
-      if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.classList.remove('hidden');
-      }
-    });
-  </script>
+  fileInput.addEventListener('change', function () {
+    const [file] = fileInput.files;
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.classList.remove('hidden');
+    }
+  });
+</script>
 @endsection

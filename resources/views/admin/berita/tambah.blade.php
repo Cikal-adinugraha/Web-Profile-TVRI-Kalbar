@@ -2,11 +2,7 @@
 
 @section('content')
   <div class="container p-4">
-    <h1>ini halaman tambah berita</h1>
-    <form method="POST" action="{{ route('logout') }}">
-      @csrf
-      <button type="submit" class="border border-black px-4 py-2">Logout</button>
-    </form>
+    <h1 class="text-primary">Tambah Berita</h1>
     <div class="mt-4">
       <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
         @csrf

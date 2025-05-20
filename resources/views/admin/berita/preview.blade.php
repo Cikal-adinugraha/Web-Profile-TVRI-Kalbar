@@ -1,22 +1,30 @@
 @extends('root')
 
+@section('title', 'Preview Berita')
 @section('content')
   <div class="container p-4">
-    <div>
-      <form action="{{ route('berita.publish', ['berita' => $berita]) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <button type="submit">dah oke? publish</button>
-      </form>
-    </div>
-    <div class="mt-4">
-      <h1 class="text-xl font-bold">{{ $berita->judul }}</h1>
+    <div class="card rounded p-4 shadow-sm">
+      <h1 class="text-primary mb-3 text-2xl font-semibold">{{ $berita->judul }}</h1>
 
-      <h6>oleh {{ $berita->user->name }} pada tanggal {{ $berita->created_at->translatedFormat('d F Y') }}</h6>
-      <div class="py-6">
-        <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" alt="{{ $berita->judul }}" class="h-40 w-72">
+      <div class="mb-4 w-full">
+        <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" class="img-fluid object-fit-cover rounded" alt="Gambar Berita" style="max-height: 300px;">
       </div>
-      <p>{!! $berita->isi !!}</p>
+
+      <div class="text-muted mb-2">
+        <small>Dibuat pada: {{ $berita->created_at->addHours(7)->translatedFormat('d F Y H:i') }}</small>
+      </div>
+
+      <div class="mb-4">
+        {!! $berita->isi !!}
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <form action="{{ route('berita.publish', ['berita' => $berita]) }}" method="POST">
+          @csrf
+          @method('PUT')
+          <button type="submit" class="btn btn-primary">Publikasikan Sekarang!</button>
+        </form>
+      </div>
     </div>
   </div>
 @endsection
