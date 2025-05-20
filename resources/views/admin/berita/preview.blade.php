@@ -3,14 +3,12 @@
 @section('title', 'Preview Berita')
 @section('content')
   <div class="container p-4">
-    <div class="card shadow-sm p-4 rounded">
-      <h1 class="text-2xl font-semibold mb-3 text-primary">{{ $berita->judul }}</h1>
+    <div class="card rounded p-4 shadow-sm">
+      <h1 class="text-primary mb-3 text-2xl font-semibold">{{ $berita->judul }}</h1>
 
-      @if ($berita->gambar)
-        <div class="mb-4">
-          <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" class="img-fluid rounded" alt="Gambar Berita" style="max-width: 100%; height: auto;">
-        </div>
-      @endif
+      <div class="mb-4 w-full">
+        <img src="{{ asset($berita->gambar ? 'storage/' . $berita->gambar : 'images/perpus.jpg') }}" class="img-fluid object-fit-cover rounded" alt="Gambar Berita" style="max-height: 300px;">
+      </div>
 
       <div class="text-muted mb-2">
         <small>Dibuat pada: {{ $berita->created_at->addHours(7)->translatedFormat('d F Y H:i') }}</small>
