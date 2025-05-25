@@ -4,10 +4,8 @@
   <div class="login-container">
     <div class="login-card">
       <h2 class="login-title text-center">Login Admin</h2>
-
       <form method="POST" action="{{ route('login.post') }}">
         @csrf
-
         @if(session('failed'))
           <div class="alert alert-danger text-center">
             {{ session('failed') }}

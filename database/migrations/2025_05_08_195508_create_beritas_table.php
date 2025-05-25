@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('berita', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id");
-            $table->string("judul");
-            $table->string("slug")->unique();
-            $table->text("isi");
-            $table->string("gambar")->nullable();
-            $table->boolean("is_published")->default(false);
+            $table->foreignId('user_id');
+            $table->string('judul');
+            $table->string('slug')->unique();
+            $table->text('isi');
+            $table->string('gambar')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

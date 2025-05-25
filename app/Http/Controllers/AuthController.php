@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view("login");
+        return view('login');
     }
 
     public function login(Request $request)
@@ -19,12 +19,13 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (!Auth::attempt($credentials)) {
-            return back()->with("failed", "Username atau password salah");
+        if (! Auth::attempt($credentials)) {
+            return back()->with('failed', 'Username atau password salah');
         }
 
         $request->session()->regenerate();
-        return to_route("dashboard")->with("success", "Berhasil login");
+
+        return to_route('dashboard')->with('success', 'Berhasil login');
     }
 
     public function logout(Request $request)
@@ -33,6 +34,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return to_route("login.get")->with("success", "Berhasil logout");
+        return to_route('login.get')->with('success', 'Berhasil logout');
     }
 }

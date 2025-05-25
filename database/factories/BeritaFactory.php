@@ -17,9 +17,9 @@ class BeritaFactory extends Factory
     public function definition(): array
     {
         return [
-            "user_id" => 1,
-            "judul" => fake()->sentence(10),
-            "isi" => collect(fake()->paragraphs(15))->map(fn($p) => "<p>$p</p>")->implode(''),
+            'user_id' => 1,
+            'judul' => fake()->sentence(10),
+            'isi' => collect(fake()->paragraphs(15))->map(fn ($p) => "<p>$p</p>")->implode(''),
         ];
     }
 }
